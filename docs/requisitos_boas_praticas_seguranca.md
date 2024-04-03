@@ -8,5 +8,5 @@
   - Sendo assim, para aumentar a segurança da aplicação, deve ser exigido que todas as senhas tenham um tamanho e uma complexidade adequadas, além de serem sempre armazenadas na forma de hash criptográficos.
 
 - Configurar o HTTPS como o padrão de comunicação do site, junto com a correta configuração de todos os seus headers.
-  - Alguns headers como: X-Frame-Options, X-Content-Type-Options, Referrer-Policy, X-XSS-Protection and Content-Security-Policy 
-- Também pode ser incluída a proteção dos cookies
+  - Alguns headers como: X-Frame-Options, X-Content-Type-Options, Referrer-Policy, X-XSS-Protection and Content-Security-Policy. 
+- Proteção de cookies.
