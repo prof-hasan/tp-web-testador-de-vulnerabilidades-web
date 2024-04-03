@@ -13,9 +13,5 @@
   - Essas convenções são importantes para garantir que o código seja legível, compreensível e consistente, facilitando a colaboração entre os desenvolvedores e a manutenção do código ao longo do tempo.
   - Principais convenções de nomes: CamelCase ou camelCase, PascalCase ou PascalCase, snake_case ou snake_case, kebab-case ou kebab-case, UPPER_CASE ou UPPER_CASE, Hungarian notation.
 
-
-
-
-
-
-
+- Modularização do código
+  - Permite que uma parte do código possa ser alterada ou atualizada sem que todo o código já desenvolvido seja alterado.
