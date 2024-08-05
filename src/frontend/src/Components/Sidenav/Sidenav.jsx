@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import './SidenavStyle.css';
+import { Link } from 'react-router-dom';
 
 function Sidenav() {
     const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
@@ -25,9 +26,17 @@ function Sidenav() {
                     unmountOnExit
                 >
                 <div className="text-left text-[15px]  mt-2 w-4/5 mx-auto  text-gray-400 " id="submenu-vulnerabilidades">
-                    <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Sql Injection </div>
-                    <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Cross-Site Scripting </div>
-                    <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Broken Acces Controll </div>
+                    <Link to="/SqlInjection">
+                        <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Sql Injection </div>
+                    </Link>
+
+                    <Link to="/">
+                        <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Cross-Site Scripting </div>
+                    </Link>
+
+                    <Link to="/BrokenAControl">
+                        <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Broken Access Control </div>
+                    </Link>
                 </div>
                 </CSSTransition>
            
