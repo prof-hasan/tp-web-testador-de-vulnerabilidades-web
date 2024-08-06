@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from '../Pages/Home/Home'
+import CrossSiteRflected from '../Pages/CrossSiteReflected/CrossSiteRflected'
 import BrokenAControl from '../Pages/BrokenAControl/BrokenAControl';
 import SqlInjection from '../Pages/SqlInjection/SqlInjection';
+import CreateUserForm from '../Pages/CreateUser/CreateUserForm';
+import Home from '../Pages/Home/Home';
 
 
 function Router() {
@@ -11,9 +13,10 @@ function Router() {
         <BrowserRouter>
             <Routes>
 
-            <Route element={<Home />} path="/" exact />
+            <Route element={<CrossSiteRflected />} path="/CrossSiteReflected" exact />
             <Route element={<BrokenAControl />} path="/BrokenAControl" exact />
             <Route element={<SqlInjection />} path="/SqlInjection" exact />
+            <Route element={<CreateUserForm />} path="/createUser" exact />
             
             </Routes>
         </BrowserRouter>
