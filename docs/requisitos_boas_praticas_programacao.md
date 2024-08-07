@@ -15,3 +15,8 @@
 
 - Modularização do código
   - Permite que uma parte do código possa ser alterada ou atualizada sem que todo o código já desenvolvido seja alterado.
+
+- Testes Unitários:
+  - Verificar se todas as requisições estão sendo bem analisadas pelo front-end
+  - Conteúdo estático sendo carregado corretamente
+  - Back-end
