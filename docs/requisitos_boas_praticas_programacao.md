@@ -21,7 +21,7 @@
   - Conteúdo estático sendo carregado corretamente
   - Back-end
 
--Estrutura de Pastas (React)
+- Estrutura de Pastas (React)
   - Organize os Arquivos: separar por tipo de arquivo (components, hooks, services) w por funcionalidades (User, Dashboard)
   - Módulos/Features: agrupar componentes, estilos e testes relacionados
 
