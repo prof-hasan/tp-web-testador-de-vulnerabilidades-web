@@ -20,3 +20,12 @@
   - Verificar se todas as requisições estão sendo bem analisadas pelo front-end
   - Conteúdo estático sendo carregado corretamente
   - Back-end
+
+-Estrutura de Pastas (React)
+  - Organize os Arquivos: separar por tipo de arquivo (components, hooks, services) w por funcionalidades (User, Dashboard)
+  - Módulos/Features: agrupar componentes, estilos e testes relacionados
+
+- Componentização (React)
+  - Componentes Simples e Reutilizáveis: componentes pequenos, com uma única responsabilidade
+  - Hooks Customizados: hooks personalizados para encapsular lógica de estado complexa ou reutilizável
+  - Composição sobre Herança: compor componentes utilizando props ao invés de herança
