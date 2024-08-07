@@ -12,7 +12,7 @@ function CrossSiteRflected() {
 
           
 
-          <h1 className="font-bold text-[20px] text-center">Vulnerabilidade: Cross-Site Scripting</h1>
+          <h1 className="font-bold text-[20px] text-center">Vulnerabilidade: Cross-Site Scripting (Reflected)</h1>
 
           <div className="rounded-md shadow-lg h-66 w-3/4 border-2 border-black bg-gray-300 p-6 m-5 mx-auto" id="user-input">
               <div>

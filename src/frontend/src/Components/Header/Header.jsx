@@ -10,13 +10,18 @@ function Header() {
         </div>
         
         <div className="flex justify-between space-x-20 absolute left-1/2 items-center " id="header-options">
+
+            <Link to="/UserLogin">
             <div className=" text-gray-300 font-light cursor-pointer hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
             Login
             </div>
+            </Link>
 
+            <Link to="/createUser">
             <div className=" text-gray-300 font-light cursor-pointer hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
             Criar usuario
             </div>
+            </Link>
 
             <select className="bg-gray-800 text-gray-300 font-light rounded cursor-pointer outline-none px-2 py-1 hover:bg-gray-700 hover:text-white">
                     <option className="bg-gray-800 text-gray-300" value="" disabled selected>Dificuldade</option>
@@ -28,6 +33,11 @@ function Header() {
                 {((location.pathname === '/CrossSiteReflected')||(location.pathname === '/CrossSiteStored')) && (
                   <select className="bg-gray-800 text-gray-300 font-light rounded cursor-pointer outline-none px-2 py-1 hover:bg-gray-700 hover:text-white">
                     <option value="" disabled selected>Tipo</option>
+
+                    <option value="" >Reflected</option>
+
+                    <option value="" >Stored</option>
+                    
                     
                 </select>
               )}

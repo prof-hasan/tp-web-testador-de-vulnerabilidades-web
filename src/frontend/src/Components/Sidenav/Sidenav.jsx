@@ -32,7 +32,7 @@ function Sidenav() {
                         <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Sql Injection </div>
                     </Link>
 
-                    <Link to="/">
+                    <Link to="/CrossSiteReflected">
                         <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Cross-Site Scripting </div>
                     </Link>
 
