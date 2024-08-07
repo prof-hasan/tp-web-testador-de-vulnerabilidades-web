@@ -18,7 +18,6 @@ function Router() {
             <Route element={<BrokenAControl />} path="/BrokenAControl" exact />
             <Route element={<SqlInjection />} path="/SqlInjection" exact />
             <Route element={<CreateUserForm />} path="/createUser" exact />
-            <Route element={<Home />} path="/" exact />
             <Route element={<AdminPage />} path="/Admin" exact />
             
             </Routes>

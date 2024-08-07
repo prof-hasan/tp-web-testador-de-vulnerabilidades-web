@@ -11,11 +11,13 @@ function Sidenav() {
     };
 
     return (
+        
 
         <div className="sidenav  lg:left-0 p-2 w-[250px] overflow-y-auto text-center bg-neutral-800	shadow-2xl flex-shrink-0   ">   
             <div>
                 <div className="p-2.5 mt-1 flex items-center cursor-pointer  " id="vulnerabilidades" onClick={toggleSubmenu}>
-                    <h1 className="font-normal text-gray-300 text-[17px] ml-3">Vulnerabilidades</h1>
+                    <h1 className="font-normal text-gray-300 text-[17px] ml-3">Vulnerabilidades</h1>   {(isSubmenuVisible)?(<i class="bi bi-caret-down-fill ml-3 mt-1 text-red-50"></i>):(<i class="bi bi-caret-right-fill text-red-50 ml-3 mt-1"></i>)}
+
 
                 </div>
 
@@ -45,7 +47,8 @@ function Sidenav() {
             <div>
                 <div className="p-2.5 mt-1 flex items-center cursor-pointer" id="vulnerabilidades">
                     <h1 className="font-normal text-gray-300 text-[17px] ml-3">Dados Bancários</h1>
-                     {/* Ver como adicionar os incones */}
+                    <i class="bi bi-caret-right-fill text-red-50 ml-3 mt-1"></i>
+                    {/* Ver como adicionar os incones */}
                 </div>
 
                
