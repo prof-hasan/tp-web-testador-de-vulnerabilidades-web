@@ -22,9 +22,8 @@ public class CreateUserUseCase {
             .ifPresent((user) -> {
                 throw new UserFoundException();
             });
-        
-            var password = passwordEncoder.encode(userEntity.getPassword());
-            userEntity.setPassword(password);
-            return this.userRepository.save(userEntity);
+        var password = passwordEncoder.encode(userEntity.getPassword());
+        userEntity.setPassword(password);
+        return this.userRepository.save(userEntity);
     }
 }

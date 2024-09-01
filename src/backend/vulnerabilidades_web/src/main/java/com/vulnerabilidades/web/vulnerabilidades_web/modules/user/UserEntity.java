@@ -13,13 +13,13 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-@Entity(name = "user")
+@Entity(name = "users")
 public class UserEntity {
     @Id
     @Pattern(regexp = "^[^\\s]+$", message = "O campo [username] não deve conter espaços")
     private String username;
 
-    @Length(min = 4, max = 25)
+    @Length(min = 4, max = 100)
     private String password;
 
     private String job;
