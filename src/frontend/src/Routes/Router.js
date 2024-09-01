@@ -16,6 +16,7 @@ function Router() {
         <BrowserRouter>
             <Routes>
 
+            <Route element={<Home />} path="/" exact />
             <Route element={<CrossSiteRflected />} path="/CrossSiteReflected" exact />
             <Route element={<CrossSiteStored />} path="/CrossSiteStored" exact />
             <Route element={<BrokenAControl />} path="/BrokenAControl" exact />

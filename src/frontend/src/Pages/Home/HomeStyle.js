@@ -1,48 +1,102 @@
-import styled from 'styled-components'
+import styled,  { keyframes } from 'styled-components'
 import {Link} from 'react-router-dom';
 
 
-export const StyledMain = styled.main`
-text-align: center;
-color: rgb(81, 40, 105);
-font-family: futura-pt;
-font-size: 18px;
-
+export const DivBanner = styled.div`
+width: 100%;
+height: 100vh;
+background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('');
+background-size: cover;
+background-position: center;
 `;
-export const Sectionlinks = styled.section`
+
+export const VulnerabilitiesNavbar = styled.div`
+margin: auto;
+width: 85%;
+padding: 35px 0;
 display: flex;
-justify-content: center;
-
-`;
-export const StyledLink  = styled(Link)`
-position: relative;
-background: transparent;
-color: white;
+justify-content: space-between;
+align-items: center;
+`
+export const StyledLogo = styled.img`
+width: 120px;
+cursor: pointer;
+`
+export const StyledLinks = styled(Link)`
 text-decoration: none;
+color: wheat;
 text-transform: uppercase;
-padding: 10px 30px;
-margin: 20px;
-font-size: 1.2em;
-font-weight:400 ;
-letter-spacing: 0.1em;
-transition: 0.4s;
-&:hover {
-    letter-spacing: 0.20em;
-    background: #d89ff7;
-    color: #d89ff7;
-    box-shadow: 0 0 35px #d89ff7;
+`
+
+export const StyledListItens = styled.li`
+list-style: none;
+display: inline-block;
+margin: 0 20px;
+position: relative;
+&:after{
+  content: '';
+  height: 3px;
+  width: 0;
+  background:red;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0ms.5s;
+};
+&:hover:after{
+  width: 100%;
+  transition: 0ms.5s;
+}
+`
+const marquee = keyframes`
+  0% {
+    transform: translateX(100%); /* Inicia fora da tela à direita */
   }
-&:before{
-content: "";
-position: absolute;
-inset: 2px;
-background: rgba(0,0,0,0.3);
+  100% {
+    transform: translateX(-100%); /* Termina fora da tela à esquerda */
   }
-  width: 300px; 
-  
 `;
 
-export const SyledSpan = styled.span`
-position: relative;
-z-index: 1;
+export const StyledListContainer = styled.div`
+  width: 240px;
+  overflow: hidden; /* Oculta os elementos fora do contêiner */
+  white-space: nowrap; /* Garante que os itens da lista fiquem em linha */
+  ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    animation: ${marquee} 10s linear infinite; /* Aplica a animação */
+  }
 `;
+//ajustar o efeito torto de hover
+
+export const StyledDivMain = styled.div`
+width: 100%;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+text-align: center;
+color: white;
+justify-content: center;
+`
+export const StyledMainTittle = styled.h1`
+font-size: 70px;
+margin-top: 80px;
+`
+
+export const StyledMainP = styled.p`
+margin: 20px auto;
+font-weight: 100;
+line-height: 25px;
+`
+
+export const ButtonContainer = styled.div`
+  display: flex; /* Utiliza flexbox para alinhar os botões horizontalmente */
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  gap: 20px; /* Define a distância entre os botões */
+  margin-top: 20px; /* Adiciona espaço acima do contêiner de botões */
+`;
+//criar um estilo para o logo e para os links das vulnerabilidades
+//adicionar mais um link indicando as vulnerabilidades
+
