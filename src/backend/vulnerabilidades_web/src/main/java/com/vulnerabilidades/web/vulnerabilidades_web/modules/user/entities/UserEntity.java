@@ -1,12 +1,14 @@
-package com.vulnerabilidades.web.vulnerabilidades_web.modules.user;
+package com.vulnerabilidades.web.vulnerabilidades_web.modules.user.entities;
 
 import java.sql.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
@@ -30,4 +32,16 @@ public class UserEntity {
 
     @CreationTimestamp
     private Date createdAt;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private BankingInformationEntity bankingInformation;
+
+    // Getter and Setter for bankingInformation
+    public BankingInformationEntity getBankingInformation() {
+        return bankingInformation;
+    }
+
+    public void setBankingInformation(BankingInformationEntity bankingInformation) {
+        this.bankingInformation = bankingInformation;
+    }
 }

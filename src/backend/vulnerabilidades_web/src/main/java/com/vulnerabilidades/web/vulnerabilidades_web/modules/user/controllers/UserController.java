@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.UserEntity;
+import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.dtos.CreateUserDTO;
+import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.entities.UserEntity;
 import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.useCases.CreateUserUseCase;
 
 import jakarta.validation.Valid;
@@ -19,9 +20,9 @@ public class UserController {
     private CreateUserUseCase createUserUseCase;
 
     @PostMapping("/")
-    public ResponseEntity<Object> create(@Valid @RequestBody UserEntity userEntity) {
+    public ResponseEntity<Object> create(@Valid @RequestBody CreateUserDTO userDTO) {
         try {
-            var result = this.createUserUseCase.execute(userEntity);
+            UserEntity result = this.createUserUseCase.execute(userDTO);
             return ResponseEntity.ok().body(result);
         }
         catch(Exception e) {
