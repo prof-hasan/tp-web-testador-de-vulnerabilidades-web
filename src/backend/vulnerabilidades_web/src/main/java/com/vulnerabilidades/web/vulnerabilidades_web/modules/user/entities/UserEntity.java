@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -32,6 +33,9 @@ public class UserEntity {
 
     @CreationTimestamp
     private Date createdAt;
+
+    @Column(name = "is_admin", nullable = false)
+    private boolean isAdmin = false;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private BankingInformationEntity bankingInformation;

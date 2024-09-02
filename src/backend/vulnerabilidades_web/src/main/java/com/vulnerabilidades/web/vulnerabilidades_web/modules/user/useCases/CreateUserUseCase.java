@@ -26,10 +26,10 @@ public class CreateUserUseCase {
 
     public CreateUserResponseDTO execute(CreateUserRequestDTO createUserRequestDTO) {
         this.userRepository
-        .findByUsername(createUserRequestDTO.getUsername())
-        .ifPresent((user) -> {
-            throw new UserFoundException();
-        });
+            .findByUsername(createUserRequestDTO.getUsername())
+            .ifPresent((user) -> {
+                throw new UserFoundException();
+            });
         
         this.bankingInformationRepository
         .findByAgenciaAndNumConta(createUserRequestDTO.getAgencia(), createUserRequestDTO.getNumConta())
@@ -40,10 +40,9 @@ public class CreateUserUseCase {
         // Criar e preencher a entidade UserEntity
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(createUserRequestDTO.getUsername());
-        
+        userEntity.setAdmin(false);
         
         var password = passwordEncoder.encode(createUserRequestDTO.getPassword());
-        System.out.println("A senha é: " + password);
         userEntity.setPassword(password);
         userEntity.setJob(createUserRequestDTO.getJob());
         userEntity.setAge(createUserRequestDTO.getAge());

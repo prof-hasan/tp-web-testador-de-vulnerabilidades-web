@@ -44,7 +44,6 @@ public class UserController {
         var user = request.getAttribute("username");
         try {
             var profile = this.userProfileUseCase.execute(user.toString());
-            System.out.println("*********************%%%O profile é: " + user.toString());
             return ResponseEntity.ok().body(profile);
         }
         catch(Exception e) {

@@ -1,6 +1,7 @@
 package com.vulnerabilidades.web.vulnerabilidades_web.security;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,28 +28,28 @@ public class CreateMessageRequestFilter extends OncePerRequestFilter {
 
         String header = request.getHeader("Authorization");
 
-        if(request.getRequestURI().startsWith("/user")) {
-            if(header != null) {
-                var token = this.jwtProvider.validateToken(header);
+        if (header != null && header.startsWith("Bearer ")) {
+            String token = header.substring(7); // Remove "Bearer " prefixo
 
-                if(token == null) {
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    return;
-                }
+            var jwtToken = this.jwtProvider.validateToken(token);
 
-                var roles = token.getClaim("roles").asList(Object.class);
-                var grants = roles.stream()
-                                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toString().toUpperCase()))
-                                .toList();
-                
-                request.setAttribute("username", token.getSubject());
-                UsernamePasswordAuthenticationToken auth = 
-                            new UsernamePasswordAuthenticationToken(token.getSubject(), null, grants);
-                SecurityContextHolder.getContext().setAuthentication(auth);
+            if (jwtToken == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
             }
+
+            // Extraindo as roles do token e convertendo para SimpleGrantedAuthority
+            var roles = jwtToken.getClaim("roles").asList(String.class);
+            var grants = roles.stream()
+                            .map(role -> new SimpleGrantedAuthority("ROLE_" + role.toUpperCase()))
+                            .toList();
+            
+            // Definindo o contexto de segurança com as autoridades extraídas
+            UsernamePasswordAuthenticationToken auth = 
+                        new UsernamePasswordAuthenticationToken(jwtToken.getSubject(), null, grants);
+            SecurityContextHolder.getContext().setAuthentication(auth);
         }
 
         filterChain.doFilter(request, response);
     }
-    
 }
