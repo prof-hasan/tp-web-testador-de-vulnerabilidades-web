@@ -1,7 +1,33 @@
+import React, { useState } from "react";
+import Draggable from "react-draggable";
 import {Sidenav} from "../../Components"
 import{Header} from "../../Components"
+import{CodeBlock} from "../../Components"
 
 function CrossSiteStored() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const vulnerableCodeExample = `
+// Exemplo de código
+function greet(name) {
+    // Comentário
+    const message = \`Hello, \${name}!\`;
+    console.log(message);
+    return message;
+}
+
+const result = greet("World");
+console.log(result);
+`;
+
   return (
     <div className=" flex flex-col  h-screen ">
       <Header/>
@@ -9,8 +35,6 @@ function CrossSiteStored() {
       <div className="flex flex-1">
         <Sidenav />
         <div id="conteudo-principal" className="p-4 min-w-0 max-w-full  flex-wrap break-words flex flex-col   ">
-
-          
 
           <h1 className="font-bold text-[20px] text-center">Vulnerabilidade: Cross-Site Scripting (Stored)</h1>
 
@@ -24,7 +48,8 @@ function CrossSiteStored() {
 
             <button
             class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button">Example</button>
+            type="button"onClick={handleOpenPopup}
+            >Example</button>
 
           </div>
 
@@ -54,6 +79,23 @@ function CrossSiteStored() {
           </table>
           
           </div>
+
+          {/* Pop-up de Código */}
+          {isPopupOpen && (
+            <Draggable>
+              <div className="fixed top-20 left-20 z-50 w-[400px] h-[300px] bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="flex justify-between items-center bg-gray-800 text-white p-2 cursor-move">
+                  <span>Exemplo de Código</span>
+                  <button onClick={handleClosePopup} className="text-red-500">
+                    X
+                  </button>
+                </div>
+                <div className="overflow-auto h-full p-4 bg-gray-900 select-text">
+                  <CodeBlock language="javascript" code={vulnerableCodeExample} />
+                </div>
+              </div>
+            </Draggable>
+          )}
 
           <p className="text-justify p-2 ">Cross-Site Scripting (XSS) Stored, também conhecido como XSS Persistente, é uma vulnerabilidade de segurança da web que permite a inserção maliciosa de scripts em páginas da web acessadas por outros usuários. Esta vulnerabilidade ocorre quando dados não confiáveis são enviados para um servidor web e, em seguida, armazenados permanentemente, como em bancos de dados ou sistemas de gerenciamento de conteúdo. Quando um usuário acessa essas páginas afetadas, os scripts maliciosos são executados no navegador do usuário, permitindo que o atacante execute ações não autorizadas, como roubo de cookies de sessão, redirecionamento para sites maliciosos ou até mesmo modificação de conteúdo exibido. <br /> <br />
           
