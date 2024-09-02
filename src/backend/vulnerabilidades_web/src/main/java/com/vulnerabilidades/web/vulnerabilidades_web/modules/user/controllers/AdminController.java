@@ -21,8 +21,28 @@ public class AdminController {
     private UserRepository userRepository;
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/all")
-    public ResponseEntity<Object> getAllUsers() {
+    @GetMapping("/all/hard")
+    public ResponseEntity<Object> getAllUsersProtected() {
+        try {
+            List<UserEntity> users = this.userRepository.findAll();
+    
+            List<UserProfileDTO> userDTOs = users.stream()
+                                            .map(user -> new UserProfileDTO(
+                                                user.getUsername(),
+                                                user.getAge(),
+                                                user.getJob(),
+                                                user.getCreatedAt()
+                                            ))
+                                            .collect(Collectors.toList());
+            return ResponseEntity.ok().body(userDTOs);
+        }
+        catch(Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/all/easy")
+    public ResponseEntity<Object> getAllUsersUnprotected() {
         try {
             List<UserEntity> users = this.userRepository.findAll();
     

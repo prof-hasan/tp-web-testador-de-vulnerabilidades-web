@@ -21,9 +21,10 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> {
                 auth
-                .requestMatchers("/user/message/").authenticated()
-                .requestMatchers("/user/bank/").authenticated()
-                .requestMatchers("/admin/all/").hasRole("ADMIN")
+                .requestMatchers("/user/message").authenticated()
+                .requestMatchers("/user/bank").authenticated()
+                .requestMatchers("/admin/all/hard").hasRole("ADMIN")
+                .requestMatchers("/admin/all/easy").authenticated()
                 .anyRequest().permitAll();
             })
             .addFilterBefore(jwtCreateMessageRequestFilter, BasicAuthenticationFilter.class);
