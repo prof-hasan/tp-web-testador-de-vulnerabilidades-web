@@ -22,6 +22,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> {
                 auth
                 .requestMatchers("/user/message/").authenticated()
+                .requestMatchers("/user/bank/").authenticated()
                 .anyRequest().permitAll(); 
             })
             .addFilterBefore(jwtCreateMessageRequestFilter, BasicAuthenticationFilter.class);
