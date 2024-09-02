@@ -30,7 +30,7 @@ public class MessagesEntity {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "username", referencedColumnName = "username")
+    @JoinColumn(name = "username", insertable = false, updatable = false)
     private UserEntity user;
 
     @Column(name = "username", nullable = false)

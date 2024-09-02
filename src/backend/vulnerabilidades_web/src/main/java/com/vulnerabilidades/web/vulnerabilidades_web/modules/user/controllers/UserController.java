@@ -33,6 +33,7 @@ public class UserController {
         }
     }
 
+    /*
     @GetMapping("/")
     public ResponseEntity<Object> get(HttpServletRequest request) {
         var user = request.getAttribute("username");
@@ -40,4 +41,5 @@ public class UserController {
             var profile = 
         }
     }
+        */
 }

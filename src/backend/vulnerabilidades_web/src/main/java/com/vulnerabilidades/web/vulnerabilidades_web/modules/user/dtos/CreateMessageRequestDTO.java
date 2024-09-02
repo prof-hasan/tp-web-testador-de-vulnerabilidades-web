@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class CreateMessageDTO {
+public class CreateMessageRequestDTO {
     @NotNull
     @NotBlank
     private String message;
