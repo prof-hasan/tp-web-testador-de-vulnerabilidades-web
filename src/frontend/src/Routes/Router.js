@@ -7,10 +7,11 @@ import Home from '../Pages/Home/Home';
 import AdminPage from '../Pages/AdminPages/AdminPage';
 import CrossSiteStored from '../Pages/CrossSiteStored/CrossSiteStored';
 import UserLogin from '../Pages/UserLogin/UserLogin';
+import CreateBankAccount from '../Pages/CreateBankAccount/CreateBankAccount';
 
 
 function Router() {
-
+//Mudar para amarelo
     return(
 
         <BrowserRouter>
@@ -24,6 +25,10 @@ function Router() {
             <Route element={<CreateUserForm />} path="/createUser" exact />
             <Route element={<AdminPage />} path="/Admin" exact />
             <Route element={<UserLogin />} path="/UserLogin" exact />
+            <Route element={<CreateBankAccount />} path="/CreateBankAccount" exact />
+            
+
+
             </Routes>
         </BrowserRouter>
     )

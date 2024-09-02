@@ -1,7 +1,34 @@
 import {Sidenav} from "../../Components"
 import{Header} from "../../Components"
+import{CodeBlock} from "../../Components"
+import React, { useState } from "react";
+import Draggable from "react-draggable";
 
 function SqlInjection() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const vulnerableCodeExample = `
+function greet(name) {
+    // Comentário teste
+    const message = \`Hello, \${name}!\`;
+    console.log(message);
+    return message;
+}
+
+const result = greet("World");
+console.log(result);
+`;
+
+const sourceCode = `
+`;
   return (
     <div className=" flex flex-col  h-screen ">
       <Header/>
@@ -14,16 +41,21 @@ function SqlInjection() {
 
           <h1 className="font-bold text-[20px] text-center">Vulnerabilidade: SQL Injection</h1>
 
-          <div className="mx-auto ">
+          <div className="mx-auto pt-2">
             <label htmlFor="user" className=" text-bas mr-2 mb-2 pt-2">Pesquise pelo nome do usuario:</label>
-            <input type="text" name="" id="user" className=" border-2 border-gray-400 w-48 text-base focus:outline focus:none " placeholder="User..."  />
+            <input type="text" name="" id="user" className=" border-2 border-gray-400 w-48 text-base focus:outline focus:none mr-2" placeholder="User..."  />
             <button
             class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button">Search</button>
 
             <button
             class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button">Example</button>
+            type="button" onClick={handleOpenPopup}>Example</button>
+
+            <button
+            class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"onClick={handleOpenPopup}
+            >Source Code</button>
 
           </div>
 
@@ -53,6 +85,22 @@ function SqlInjection() {
           </table>
           
           </div>
+
+          {isPopupOpen && (
+            <Draggable>
+              <div className="fixed top-20 left-20 z-50 w-[400px] h-[300px] bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="flex justify-between items-center bg-gray-800 text-white p-2 cursor-move">
+                  <span>Exemplo de Código</span>
+                  <button onClick={handleClosePopup} className="text-red-500">
+                    X
+                  </button>
+                </div>
+                <div className="overflow-auto h-full p-4 bg-gray-900 select-text">
+                  <CodeBlock language="javascript" code={vulnerableCodeExample} />
+                </div>
+              </div>
+            </Draggable>
+          )}
 
           <p className="text-justify p-2 ">SQL Injection é uma vulnerabilidade de segurança comumente explorada em sistemas de gerenciamento de banco de dados (DBMS) que utilizam SQL (Structured Query Language). Essa técnica maliciosa permite que um invasor insira código SQL arbitrário em consultas de entrada, permitindo assim manipular o banco de dados e obter acesso não autorizado a informações confidenciais ou realizar ações indesejadas. <br /> <br />
           
