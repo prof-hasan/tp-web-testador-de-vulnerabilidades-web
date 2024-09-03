@@ -3,6 +3,8 @@ package com.vulnerabilidades.web.vulnerabilidades_web.modules.user.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,13 +42,17 @@ public class UserController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Object> get(HttpServletRequest request) {
-        var user = request.getAttribute("username");
+    public ResponseEntity<Object> get() {
         try {
-            var profile = this.userProfileUseCase.execute(user.toString());
+            // Obtém o nome do usuário autenticado a partir do SecurityContextHolder
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+
+            // Executa o caso de uso passando o nome de usuário
+            var profile = this.userProfileUseCase.execute(username);
             return ResponseEntity.ok().body(profile);
-        }
-        catch(Exception e) {
+        } 
+        catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
