@@ -16,7 +16,6 @@ import { useAuth } from '../Hooks/UseAuth';
 
 
 function Router() {
-    const { user } = useAuth();
 
     return(
 
