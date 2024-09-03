@@ -100,7 +100,7 @@ function Home() {
       age: data.age,
       branchNumber: data.branchNumber,
       accountNumber: data.accountNumber,
-      digito: data.digito,
+      digit: data.digit,
       secret: data.secret,
       balance: data.balance,
 
@@ -110,7 +110,7 @@ function Home() {
     console.log(formData);
 
     axios.post(
-      '',
+      'http://localhost:8080/user/',
       formData)
       .then(res => {
         if (res.status === 201) {
@@ -225,10 +225,10 @@ function Home() {
 
               <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
-                  <input type="string" name="digito" id="digito" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" digito" required onChange={handleCreateUserInputChange} {...registerCreateUser('digito')} />
-                  <label for="digito" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"></label>
+                  <input type="string" name="digit" id="digit" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" digito" required onChange={handleCreateUserInputChange} {...registerCreateUser('digit')} />
+                  <label for="digit" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"></label>
 
-                  <div>{createUserErrors.digito?.message}</div>
+                  <div>{createUserErrors.digit?.message}</div>
 
                 </div>
 

@@ -19,7 +19,7 @@ export const userValidationSchema = Yup.object({
     .required('A idade é obrigatória.'),
   
   branchNumber: Yup.string()
-    .length(5, 'O número da agência deve ter exatamente 5 caracteres.')
+    .length(4, 'O número da agência deve ter exatamente 4 caracteres.')
     .required('O número da agência é obrigatório.'),
   
   accountNumber: Yup.string()
