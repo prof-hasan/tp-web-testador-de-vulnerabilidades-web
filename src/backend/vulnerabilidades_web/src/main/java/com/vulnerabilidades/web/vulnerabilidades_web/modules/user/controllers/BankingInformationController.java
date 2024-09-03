@@ -1,6 +1,7 @@
 package com.vulnerabilidades.web.vulnerabilidades_web.modules.user.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vulnerabilidades.web.vulnerabilidades_web.exceptions.BankAccountNotFoundException;
+import com.vulnerabilidades.web.vulnerabilidades_web.exceptions.NoneBankAccountFoundException;
 import com.vulnerabilidades.web.vulnerabilidades_web.exceptions.UserNotFoundException;
 import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.dtos.BankingInformationResponseDTO;
 import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.entities.BankingInformationEntity;
@@ -53,9 +55,6 @@ public class BankingInformationController {
     @GetMapping("/vulnerable")
     public ResponseEntity<Object> getVulnerableBankingInfo(@RequestParam String accountNumber, @RequestParam String branchNumber) {
         try {
-            System.out.println("%%%%%%%%%%%%%%%%%%%");
-            System.out.println(accountNumber);
-            System.out.println(branchNumber);
             List<BankingInformationEntity> bankingInformationEntities =
                     bankingInformationRepository.findByAccountNumberAndBranchNumberVulnerable(accountNumber, branchNumber);
 
@@ -63,9 +62,21 @@ public class BankingInformationController {
                 return ResponseEntity.status(404).body("No banking information found.");
             }
 
-            return ResponseEntity.ok().body(bankingInformationEntities);
+            // Convertendo as entidades para DTOs
+            List<BankingInformationResponseDTO> bankingInformationDTOs = bankingInformationEntities.stream()
+                    .map(entity -> BankingInformationResponseDTO.builder()
+                            .branchNumber(entity.getBranchNumber())
+                            .accountNumber(entity.getAccountNumber())
+                            .balance(entity.getBalance())
+                            .secret(entity.getSecret())
+                            .digit(entity.getDigit())
+                            .build())
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.ok().body(bankingInformationDTOs);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }
