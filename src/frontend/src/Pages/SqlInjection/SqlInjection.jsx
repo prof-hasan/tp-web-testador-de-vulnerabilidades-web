@@ -22,6 +22,7 @@ function SqlInjection() {
         setResults(response.data);
       })
       .catch(error => {
+        setResults([]);
         console.error("There was an error!", error);
       });
   };
