@@ -61,6 +61,27 @@ function Home() {
     setCustomCreateUserError("");
   };
 
+  const [showSuccessBox, setShowSuccessBox] = useState(false);
+
+  const SuccessBox = () => (
+    <div style={{
+      backgroundColor: '#4BB543',
+      color: 'white',
+      padding: '20px',
+      borderRadius: '10px',
+      textAlign: 'center',
+      marginTop: '20px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      animation: 'fadeIn 0.5s ease-out'
+    }}>
+      <span style={{ marginRight: '10px', fontSize: '20px' }}>✔</span> Login bem-sucedido!
+    </div>
+  );
+  
+  
+
   const onSubmitLogin = (data) => {
     setUserLogin(false);
     const formData = {
@@ -76,6 +97,7 @@ function Home() {
           localStorage.setItem('accessToken', accessToken);
           setUserLogin(true);
           await login(res.data); // Função de login para manipulação adicional
+          setShowSuccessBox(true);
         }
       })
       .catch(err => {

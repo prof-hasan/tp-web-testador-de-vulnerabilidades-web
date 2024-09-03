@@ -138,7 +138,14 @@ console.log(result);
           )}
 
           <p className="text-justify p-2">
-            {/* Descrição da vulnerabilidade */}
+          SQL Injection é uma vulnerabilidade de segurança comumente explorada em sistemas de gerenciamento de banco de dados (DBMS) que utilizam SQL (Structured Query Language). Essa técnica maliciosa permite que um invasor insira código SQL arbitrário em consultas de entrada, permitindo assim manipular o banco de dados e obter acesso não autorizado a informações confidenciais ou realizar ações indesejadas. <br /> <br />
+          
+          Para realizar uma SQL Injection, o invasor explora falhas na forma como as consultas SQL são construídas em um aplicativo da web. Geralmente, isso ocorre quando os desenvolvedores não sanitizam corretamente as entradas do usuário antes de incluí-las em consultas SQL. O invasor pode então inserir instruções SQL adicionais ou modificar as consultas existentes para executar ações não autorizadas. <br /> <br />
+          
+          As consequências de uma SQL Injection podem ser devastadoras. Um invasor pode obter acesso a dados confidenciais, como informações de usuário, senhas, dados financeiros ou até mesmo informações críticas da empresa. Além disso, eles podem manipular ou excluir dados, comprometer a integridade do sistema, ou até mesmo assumir o controle completo do servidor.
+         <br /><br />
+
+         Para mitigar o risco de SQL Injection, os desenvolvedores devem implementar práticas seguras de desenvolvimento de software, como a utilização de consultas parametrizadas ou o uso de ORM (Object-Relational Mapping) para interagir com o banco de dados. Além disso, é essencial realizar auditorias de segurança regulares e aplicar patches de segurança para evitar vulnerabilidades conhecidas
           </p>
 
           <h1 className="font-bold text-[17px] pt-4">Mais informações</h1>
