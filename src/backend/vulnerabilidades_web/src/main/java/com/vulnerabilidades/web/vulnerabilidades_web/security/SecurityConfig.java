@@ -23,6 +23,7 @@ public class SecurityConfig {
                 auth
                 .requestMatchers("/user/message").authenticated()
                 .requestMatchers("/user/bank").authenticated()
+                .requestMatchers("/user/bank/vulnerable/").permitAll()
                 .requestMatchers("/admin/all/hard").hasRole("ADMIN")
                 .requestMatchers("/admin/all/easy").permitAll()
                 .anyRequest().permitAll();
