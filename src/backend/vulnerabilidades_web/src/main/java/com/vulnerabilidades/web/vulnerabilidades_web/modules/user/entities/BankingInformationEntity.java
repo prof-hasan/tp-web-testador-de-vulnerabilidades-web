@@ -24,7 +24,7 @@ public class BankingInformationEntity {
     private UUID id;
 
     @NotNull
-    @Length(min = 5, max = 5)
+    @Length(min = 4, max = 4)
     private String branchNumber;
 
     @NotNull
