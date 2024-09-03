@@ -36,7 +36,7 @@ public class BankingInformationController {
             BankingInformationResponseDTO bankingInformationResponseDTO = BankingInformationResponseDTO.builder()
                                                                             .agencia(bankingInformationEntity.getAgencia())
                                                                             .numConta(bankingInformationEntity.getNumConta())
-                                                                            .saldo(bankingInformationEntity.getSaldo())
+                                                                            .balance(bankingInformationEntity.getBalance())
                                                                             .secret(bankingInformationEntity.getSecret())
                                                                             .digit(bankingInformationEntity.getDigit())
                                                                             .build();

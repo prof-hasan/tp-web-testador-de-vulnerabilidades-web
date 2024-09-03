@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class BankingInformationResponseDTO {
     private int agencia;
     private int numConta;
-    private float saldo;
+    private float balance;
     private String secret;
     private int digit;
 }

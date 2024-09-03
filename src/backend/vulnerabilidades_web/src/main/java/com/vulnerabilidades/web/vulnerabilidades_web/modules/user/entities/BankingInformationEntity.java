@@ -42,7 +42,7 @@ public class BankingInformationEntity {
     private String secret;
 
     @Min(value = 0, message = "O saldo deve ser zero ou positivo")
-    private float saldo;
+    private float balance;
 
     @OneToOne
     @JoinColumn(name = "username", nullable = false)

@@ -54,7 +54,7 @@ public class CreateUserUseCase {
         bankingInformation.setNumConta(createUserRequestDTO.getNumConta());
         bankingInformation.setDigit(createUserRequestDTO.getDigit());
         bankingInformation.setSecret(createUserRequestDTO.getSecret());
-        bankingInformation.setSaldo(createUserRequestDTO.getSaldo());
+        bankingInformation.setBalance(createUserRequestDTO.getBalance());
         bankingInformation.setUser(userEntity);
 
         // Associar a conta bancária ao usuário
@@ -77,7 +77,7 @@ public class CreateUserUseCase {
             responseDTO.setNumConta(savedBankingInfo.getNumConta());
             responseDTO.setDigit(savedBankingInfo.getDigit());
             responseDTO.setSecret(savedBankingInfo.getSecret());
-            responseDTO.setSaldo(savedBankingInfo.getSaldo());
+            responseDTO.setBalance(savedBankingInfo.getBalance());
         }
 
         return responseDTO;

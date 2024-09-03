@@ -12,5 +12,5 @@ public class CreateUserResponseDTO {
     private int numConta;
     private int digit;
     private String secret;
-    private float saldo;
+    private float balance;
 }
