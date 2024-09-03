@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .requestMatchers("/user/message").authenticated()
                 .requestMatchers("/user/bank").authenticated()
                 .requestMatchers("/admin/all/hard").hasRole("ADMIN")
-                .requestMatchers("/admin/all/easy").authenticated()
+                .requestMatchers("/admin/all/easy").permitAll()
                 .anyRequest().permitAll();
             })
             .addFilterBefore(jwtCreateMessageRequestFilter, BasicAuthenticationFilter.class);

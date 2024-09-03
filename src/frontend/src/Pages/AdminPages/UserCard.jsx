@@ -1,28 +1,16 @@
+import { OrderItemDiv, StyledButton, StyledP, OrderItemHeaderDiv, TopLeftText, BottomLeftText, TopRightText } from './UserCardStyle';
 
-
-
-
-import {OrderItemDiv,StyledButton,StyledP,OrderItemHeaderDiv,TopLeftText,BottomLeftText,TopRightText} from './UserCardStyle';
-
-
-
-function UserCard(props){
-
-
-    return(
-    <OrderItemDiv>
-
-        <OrderItemHeaderDiv>
-            <TopLeftText>Id: {props.id} </TopLeftText>
-            <TopRightText>Nome: {props.nome}</TopRightText>
-            <BottomLeftText>Senha: {props.senha}</BottomLeftText>
-        </OrderItemHeaderDiv>
-    
-
-    </OrderItemDiv>
-
+function UserCard({ user }) {
+    return (
+        <OrderItemDiv>
+            <OrderItemHeaderDiv>
+                <TopLeftText>Username: {user.username} </TopLeftText>
+                <TopRightText>Idade: {user.age}</TopRightText>
+                <BottomLeftText>Profissão: {user.job}</BottomLeftText>
+                <BottomLeftText>Criado em: {user.createdAt}</BottomLeftText>
+            </OrderItemHeaderDiv>
+        </OrderItemDiv>
     );
 }
-
 
 export default UserCard;
