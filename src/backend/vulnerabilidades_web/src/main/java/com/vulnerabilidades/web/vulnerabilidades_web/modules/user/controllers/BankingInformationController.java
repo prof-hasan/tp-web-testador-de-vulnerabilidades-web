@@ -2,6 +2,8 @@ package com.vulnerabilidades.web.vulnerabilidades_web.modules.user.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,13 +28,17 @@ public class BankingInformationController {
     private BankingInformationRepository bankingInformationRepository;
 
     @GetMapping("/")
-    public ResponseEntity<Object> getUserBankingInfo(HttpServletRequest request) {
+    public ResponseEntity<Object> getUserBankingInfo() {
         try {
-            var username = request.getAttribute("username").toString();
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+
             UserEntity userEntity = this.userRepository.findByUsername(username)
                                         .orElseThrow(() -> new UserNotFoundException());
+
             BankingInformationEntity bankingInformationEntity = this.bankingInformationRepository.findByUser(userEntity)
                                                 .orElseThrow(() -> new BankAccountNotFoundException());
+
             BankingInformationResponseDTO bankingInformationResponseDTO = BankingInformationResponseDTO.builder()
                                                                             .branchNumber(bankingInformationEntity.getBranchNumber())
                                                                             .accountNumber(bankingInformationEntity.getAccountNumber())
@@ -40,11 +46,10 @@ public class BankingInformationController {
                                                                             .secret(bankingInformationEntity.getSecret())
                                                                             .digit(bankingInformationEntity.getDigit())
                                                                             .build();
+
             return ResponseEntity.ok().body(bankingInformationResponseDTO);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        
     }
 }
