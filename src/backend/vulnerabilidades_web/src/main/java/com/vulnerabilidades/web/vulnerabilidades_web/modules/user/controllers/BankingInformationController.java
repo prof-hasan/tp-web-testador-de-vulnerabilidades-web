@@ -37,6 +37,8 @@ public class BankingInformationController {
                                                                             .agencia(bankingInformationEntity.getAgencia())
                                                                             .numConta(bankingInformationEntity.getNumConta())
                                                                             .saldo(bankingInformationEntity.getSaldo())
+                                                                            .secret(bankingInformationEntity.getSecret())
+                                                                            .digit(bankingInformationEntity.getDigit())
                                                                             .build();
             return ResponseEntity.ok().body(bankingInformationResponseDTO);
         }

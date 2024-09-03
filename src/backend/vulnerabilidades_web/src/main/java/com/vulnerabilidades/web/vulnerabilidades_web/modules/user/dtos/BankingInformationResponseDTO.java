@@ -13,4 +13,6 @@ public class BankingInformationResponseDTO {
     private int agencia;
     private int numConta;
     private float saldo;
+    private String secret;
+    private int digit;
 }

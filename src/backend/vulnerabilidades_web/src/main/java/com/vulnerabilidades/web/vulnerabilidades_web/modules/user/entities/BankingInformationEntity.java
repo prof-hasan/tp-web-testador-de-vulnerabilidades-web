@@ -13,6 +13,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -34,8 +35,9 @@ public class BankingInformationEntity {
 
     @Digits(integer = 1, fraction = 0)
     @Min(value = 0, message = "O dígito não pode ser um número negativo")
-    private int digito;
+    private int digit;
 
+    @Pattern(regexp = "\\d+", message = "Deve conter apenas números")
     @Length(min = 6)
     private String secret;
 

@@ -10,7 +10,7 @@ public class CreateUserResponseDTO {
     private int age;
     private int agencia;
     private int numConta;
-    private int digito;
+    private int digit;
     private String secret;
     private float saldo;
 }

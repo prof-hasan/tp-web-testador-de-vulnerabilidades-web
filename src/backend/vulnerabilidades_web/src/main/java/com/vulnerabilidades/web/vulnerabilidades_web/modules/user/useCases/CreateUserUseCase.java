@@ -52,7 +52,7 @@ public class CreateUserUseCase {
         BankingInformationEntity bankingInformation = new BankingInformationEntity();
         bankingInformation.setAgencia(createUserRequestDTO.getAgencia());
         bankingInformation.setNumConta(createUserRequestDTO.getNumConta());
-        bankingInformation.setDigito(createUserRequestDTO.getDigito());
+        bankingInformation.setDigit(createUserRequestDTO.getDigit());
         bankingInformation.setSecret(createUserRequestDTO.getSecret());
         bankingInformation.setSaldo(createUserRequestDTO.getSaldo());
         bankingInformation.setUser(userEntity);
@@ -75,7 +75,7 @@ public class CreateUserUseCase {
         if (savedBankingInfo != null) {
             responseDTO.setAgencia(savedBankingInfo.getAgencia());
             responseDTO.setNumConta(savedBankingInfo.getNumConta());
-            responseDTO.setDigito(savedBankingInfo.getDigito());
+            responseDTO.setDigit(savedBankingInfo.getDigit());
             responseDTO.setSecret(savedBankingInfo.getSecret());
             responseDTO.setSaldo(savedBankingInfo.getSaldo());
         }
