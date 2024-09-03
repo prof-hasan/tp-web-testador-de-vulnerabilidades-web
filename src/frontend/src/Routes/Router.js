@@ -8,6 +8,8 @@ import AdminPage from '../Pages/AdminPages/AdminPage';
 import CrossSiteStored from '../Pages/CrossSiteStored/CrossSiteStored';
 import UserLogin from '../Pages/UserLogin/UserLogin';
 import ViewBankAccount from '../Pages/ViewBankAccount/ViewBankAccount';
+import { AuthProvider } from '../Hooks/UseAuth';
+
 
 
 function Router() {
@@ -15,6 +17,8 @@ function Router() {
     return(
 
         <BrowserRouter>
+        <AuthProvider>
+
             <Routes>
 
             <Route element={<Home />} path="/" exact />
@@ -28,6 +32,8 @@ function Router() {
 
 
             </Routes>
+            </AuthProvider>
+
         </BrowserRouter>
     )
 
