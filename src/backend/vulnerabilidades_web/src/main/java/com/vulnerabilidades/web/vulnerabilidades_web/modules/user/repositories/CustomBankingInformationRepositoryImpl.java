@@ -15,7 +15,6 @@ public class CustomBankingInformationRepositoryImpl implements CustomBankingInfo
     @Override
     public List<BankingInformationEntity> findByAccountNumberAndBranchNumberVulnerable(String accountNumber, String branchNumber) {
         String queryStr = "SELECT * FROM banking_information WHERE account_number = '" + accountNumber + "' AND branch_number = '" + branchNumber + "'";
-        System.out.println(queryStr);
         Query query = this.entityManager.createNativeQuery(queryStr, BankingInformationEntity.class);
         return query.getResultList();
     }
