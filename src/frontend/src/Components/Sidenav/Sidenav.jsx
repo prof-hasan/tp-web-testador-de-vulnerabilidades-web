@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom';
 
 function Sidenav() {
     const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
+    const [isBankSubmenuVisible, setIsBankSubmenuVisible] = useState(false);
+
 
     const toggleSubmenu = () => {
         setIsSubmenuVisible(!isSubmenuVisible);
+    };
+
+    const toggleBankSubmenu = () => {
+        setIsBankSubmenuVisible(!isBankSubmenuVisible);
     };
 
     return (
@@ -45,11 +51,30 @@ function Sidenav() {
             </div>
 
             <div>
-                <div className="p-2.5 mt-1 flex items-center cursor-pointer" id="vulnerabilidades">
+                <div className="p-2.5 mt-1 flex items-center cursor-pointer" id="dados-bancarios"onClick={toggleBankSubmenu}>
                     <h1 className="font-normal text-gray-300 text-[17px] ml-3">Dados Bancários</h1>
-                    <i class="bi bi-caret-right-fill text-red-50 ml-3 mt-1"></i>
-                    {/* Ver como adicionar os incones */}
+                    {(isBankSubmenuVisible)?(<i class="bi bi-caret-down-fill ml-3 mt-1 text-red-50"></i>):(<i class="bi bi-caret-right-fill text-red-50 ml-3 mt-1"></i>)}
+                    
                 </div>
+                <CSSTransition
+                    in={isBankSubmenuVisible}
+                    timeout={300}
+                    classNames="submenu"
+                    unmountOnExit
+                >
+                <div className="text-left text-[15px]  mt-2 w-4/5 mx-auto  text-gray-400 " id="submenu-vulnerabilidades">
+                    <Link to="">
+                        <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Criar conta bancária </div>
+                    </Link>
+
+                    <Link to="">
+                        <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Acessar dados bancários </div>
+                    </Link>
+
+                </div>
+                
+                
+                </CSSTransition>
 
                
             </div>
