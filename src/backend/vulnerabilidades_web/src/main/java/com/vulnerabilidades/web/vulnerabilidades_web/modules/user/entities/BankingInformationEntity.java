@@ -24,14 +24,12 @@ public class BankingInformationEntity {
     private UUID id;
 
     @NotNull
-    @Digits(integer = 4, fraction = 0)
-    @Min(value = 0, message = "A agência não pode ser um número negativo")
-    private int branchNumber;
+    @Length(min = 5, max = 5)
+    private String branchNumber;
 
     @NotNull
-    @Digits(integer = 5, fraction = 0)
-    @Min(value = 0, message = "O número da conta não pode ser um número negativo")
-    private int accountNumber;
+    @Length(min = 5, max = 5)
+    private String accountNumber;
 
     @Digits(integer = 1, fraction = 0)
     @Min(value = 0, message = "O dígito não pode ser um número negativo")

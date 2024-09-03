@@ -9,6 +9,6 @@ import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.entities.Banki
 import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.entities.UserEntity;
 
 public interface BankingInformationRepository extends JpaRepository<BankingInformationEntity, UUID> {
-    Optional<BankingInformationEntity> findByBranchNumberAndAccountNumber(int branchNumber, int accountNumber);
+    Optional<BankingInformationEntity> findByBranchNumberAndAccountNumber(String branchNumber, String accountNumber);
     Optional<BankingInformationEntity> findByUser(UserEntity user);
 }

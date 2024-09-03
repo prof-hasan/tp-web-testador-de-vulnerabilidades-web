@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BankingInformationResponseDTO {
-    private int branchNumber;
-    private int accountNumber;
+    private String branchNumber;
+    private String accountNumber;
     private float balance;
     private String secret;
     private int digit;
