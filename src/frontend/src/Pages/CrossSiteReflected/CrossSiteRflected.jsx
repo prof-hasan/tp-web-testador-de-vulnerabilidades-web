@@ -7,6 +7,20 @@ import{CodeBlock} from "../../Components"
 
 function CrossSiteRflected() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [user, setUser] = useState(""); 
+  const [message, setMessage] = useState(""); 
+  const [textoExibido, setTextoExibido] = useState(""); 
+  const [textoExibidoUser, setTextoExibidoUser] = useState("");
+
+  const handleSubmit = () => {
+    if (user || message) { 
+      setTextoExibidoUser(`User: ${user}`);
+      setTextoExibido(`Message: ${message}`);
+    } else {
+      setTextoExibido("")
+      setTextoExibidoUser(""); 
+    }
+  };
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -45,7 +59,8 @@ const sourceCode = `
           <div className="rounded-md shadow-lg h-66 w-3/4 border-2 border-black bg-gray-300 p-6 m-5 mx-auto" id="user-input">
               <div>
                 <label htmlFor="user" className="block text-bas mb-2 pt-2">User</label>
-                <input type="text" name="" id="user" className="border w-36 text-base focus:outline "  />
+                <input type="text" name="" id="user" className="border w-36 text-base focus:outline "   value={user} 
+                onChange={(e) => setUser(e.target.value)} />
               </div>
 
               <div>
@@ -54,21 +69,32 @@ const sourceCode = `
                   id="message" 
                   className="border w-72 text-base focus:outline h-36 align-text-top p-2"
                   placeholder="Digite sua mensagem aqui..." 
-                />
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)} />
               </div>
+
 
               <div className="flex justify-end ">
                 <button type="button" class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 m-2 text-center align-middle text-sm  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ">Source Code</button>
                 
                 <button
                 class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button" onClick={handleOpenPopup} >Submit</button>
+                type="button" onClick={handleOpenPopup} >Source Code</button>
 
                 <button
                 class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button" >Source code</button>
+                type="button"  onClick={handleSubmit} >Submit</button>
 
               </div>
+
+              {(textoExibido || textoExibidoUser) && (
+                <div className="flex flex-col">
+                <div>{textoExibido}</div> 
+                <div >{textoExibidoUser}</div> 
+                </div>
+              )}
+  
+
           </div>
 
           {isPopupOpen && (
