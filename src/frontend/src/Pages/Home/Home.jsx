@@ -18,10 +18,15 @@ function Home() {
   //validador do formulario de criar usuario
   const [userCreated, setUserCreated] = useState(false);
   const [userCreatedError, setUserCreatedError] = useState(false);
-  const {CreateUserRegister, handleCreateUserSubmit, formState: { errors }} = useForm({
+  const { register: registerCreateUser, handleSubmit: handleSubmitCreateUser, formState: { errors: createUserErrors } } = useForm({
     resolver: yupResolver(userValidationSchema)
-}
-);
+  });
+
+  // validador formulário login
+  const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: loginErrors } } = useForm({
+    resolver: yupResolver()
+  });
+
 
 //erros da requisição de criar usuário:
 const [customCreateUserError, setCustomCreateUserError] = useState("");
@@ -44,7 +49,7 @@ const [customCreateUserError, setCustomCreateUserError] = useState("");
     setCustomCreateUserError(""); 
 };
   //função para criar usuario
-  const onSubmit = (data) => {setUserCreated(false);
+  const onSubmitCreateUser = (data) => {setUserCreated(false);
     const formData = {
         username: data.username,
         //outros valores
@@ -70,6 +75,8 @@ const [customCreateUserError, setCustomCreateUserError] = useState("");
                             console.log(err);
                             setUserCreatedError(true);
                         })}
+
+
 
   return (
     <div>
@@ -113,23 +120,26 @@ const [customCreateUserError, setCustomCreateUserError] = useState("");
 
         {showCreateUserForm&& (
           <LoginFormContainer> 
-            <form class="max-w-md  pl-14 pt-8">
+            <form class="max-w-md  pl-14 pt-8" onSubmit={handleSubmitCreateUser(onSubmitCreateUser)}>
             <div class="relative z-0 w-full mb-5 group">
                 <input type="string" name="username" id="username" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" "  
-                onChange={handleCreateUserInputChange} {...CreateUserRegister('username')}/>
+                onChange={handleCreateUserInputChange} {...registerCreateUser('username')}/>
                 <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
+
+                <div>{createUserErrors.username?.message}</div>
+                
             </div>
             <div class="relative z-0 w-full mb-5 group">
               <input type="string" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" "
-              onChange={handleCreateUserInputChange} {...CreateUserRegister('password')}  />
+              onChange={handleCreateUserInputChange} {...registerCreateUser('password')}  />
               <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="job" name="job" id="job" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" " required onChange={handleCreateUserInputChange} {...CreateUserRegister('job')}/>
+                <input type="job" name="job" id="job" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" " required onChange={handleCreateUserInputChange} {...registerCreateUser('job')}/>
                 <label for="job" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Job</label>
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="int" name="age" id="age" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" " required onChange={handleCreateUserInputChange} {...CreateUserRegister('age')} />
+                <input type="int" name="age" id="age" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" " required onChange={handleCreateUserInputChange} {...registerCreateUser('age')} />
                 <label for="age" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Idade</label>
             </div>
             <div class="grid md:grid-cols-2 md:gap-6">
