@@ -8,8 +8,8 @@ public class CreateUserRequestDTO {
     private String password;
     private String job;
     private int age;
-    private int agencia;
-    private int numConta;
+    private int branchNumber;
+    private int accountNumber;
     private int digit;
     private String secret;
     private float balance;

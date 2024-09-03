@@ -32,7 +32,7 @@ public class CreateUserUseCase {
         });
         
         this.bankingInformationRepository
-        .findByAgenciaAndNumConta(createUserRequestDTO.getAgencia(), createUserRequestDTO.getNumConta())
+        .findByBranchNumberAndAccountNumber(createUserRequestDTO.getBranchNumber(), createUserRequestDTO.getAccountNumber())
         .ifPresent((account) -> {
             throw new BankAccountFoundException();
         });
@@ -50,8 +50,8 @@ public class CreateUserUseCase {
 
         // Criar e preencher a entidade BankingInformationEntity
         BankingInformationEntity bankingInformation = new BankingInformationEntity();
-        bankingInformation.setAgencia(createUserRequestDTO.getAgencia());
-        bankingInformation.setNumConta(createUserRequestDTO.getNumConta());
+        bankingInformation.setBranchNumber(createUserRequestDTO.getBranchNumber());
+        bankingInformation.setAccountNumber(createUserRequestDTO.getAccountNumber());
         bankingInformation.setDigit(createUserRequestDTO.getDigit());
         bankingInformation.setSecret(createUserRequestDTO.getSecret());
         bankingInformation.setBalance(createUserRequestDTO.getBalance());
@@ -73,8 +73,8 @@ public class CreateUserUseCase {
         // Mapear informações bancárias
         BankingInformationEntity savedBankingInfo = savedUser.getBankingInformation();
         if (savedBankingInfo != null) {
-            responseDTO.setAgencia(savedBankingInfo.getAgencia());
-            responseDTO.setNumConta(savedBankingInfo.getNumConta());
+            responseDTO.setBranchNumber(savedBankingInfo.getBranchNumber());
+            responseDTO.setAccountNumber(savedBankingInfo.getAccountNumber());
             responseDTO.setDigit(savedBankingInfo.getDigit());
             responseDTO.setSecret(savedBankingInfo.getSecret());
             responseDTO.setBalance(savedBankingInfo.getBalance());

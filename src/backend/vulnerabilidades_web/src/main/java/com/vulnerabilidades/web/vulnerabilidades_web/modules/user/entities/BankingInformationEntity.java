@@ -26,12 +26,12 @@ public class BankingInformationEntity {
     @NotNull
     @Digits(integer = 4, fraction = 0)
     @Min(value = 0, message = "A agência não pode ser um número negativo")
-    private int agencia;
+    private int branchNumber;
 
     @NotNull
     @Digits(integer = 5, fraction = 0)
     @Min(value = 0, message = "O número da conta não pode ser um número negativo")
-    private int numConta;
+    private int accountNumber;
 
     @Digits(integer = 1, fraction = 0)
     @Min(value = 0, message = "O dígito não pode ser um número negativo")

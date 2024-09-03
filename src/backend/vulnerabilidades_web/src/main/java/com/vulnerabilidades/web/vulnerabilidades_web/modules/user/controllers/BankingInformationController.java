@@ -34,8 +34,8 @@ public class BankingInformationController {
             BankingInformationEntity bankingInformationEntity = this.bankingInformationRepository.findByUser(userEntity)
                                                 .orElseThrow(() -> new BankAccountNotFoundException());
             BankingInformationResponseDTO bankingInformationResponseDTO = BankingInformationResponseDTO.builder()
-                                                                            .agencia(bankingInformationEntity.getAgencia())
-                                                                            .numConta(bankingInformationEntity.getNumConta())
+                                                                            .branchNumber(bankingInformationEntity.getBranchNumber())
+                                                                            .accountNumber(bankingInformationEntity.getAccountNumber())
                                                                             .balance(bankingInformationEntity.getBalance())
                                                                             .secret(bankingInformationEntity.getSecret())
                                                                             .digit(bankingInformationEntity.getDigit())
