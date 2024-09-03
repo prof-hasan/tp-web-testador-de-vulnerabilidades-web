@@ -8,6 +8,8 @@ import VulnerableAdminPage from '../Pages/AdminPages/VulnerableAdminPage';
 import CrossSiteStored from '../Pages/CrossSiteStored/CrossSiteStored';
 import UserLogin from '../Pages/UserLogin/UserLogin';
 import ViewBankAccount from '../Pages/ViewBankAccount/ViewBankAccount';
+import { AuthProvider } from '../Hooks/UseAuth';
+
 import ProtectedAdminPage from '../Pages/AdminPages/ProtectedAdminPage';
 
 
@@ -16,6 +18,8 @@ function Router() {
     return(
 
         <BrowserRouter>
+        <AuthProvider>
+
             <Routes>
 
             <Route element={<Home />} path="/" exact />
@@ -30,6 +34,8 @@ function Router() {
 
 
             </Routes>
+            </AuthProvider>
+
         </BrowserRouter>
     )
 
