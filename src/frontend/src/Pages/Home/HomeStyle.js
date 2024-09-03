@@ -33,27 +33,13 @@ list-style: none;
 display: inline-block;
 margin: 0 20px;
 position: relative;
-&:after{
-  content: '';
-  height: 3px;
-  width: 0;
-  background:red;
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  transition: 0ms.5s;
-};
-&:hover:after{
-  width: 100%;
-  transition: 0ms.5s;
-}
 `
 const marquee = keyframes`
   0% {
-    transform: translateX(100%); /* Inicia fora da tela à direita */
+    transform: translateX(100%); 
   }
   100% {
-    transform: translateX(-100%); /* Termina fora da tela à esquerda */
+    transform: translateX(-100%); 
   }
 `;
 

@@ -16,9 +16,8 @@ function CrossSiteStored() {
   };
 
   const vulnerableCodeExample = `
-// Exemplo de código
 function greet(name) {
-    // Comentário
+    // Comentário teste
     const message = \`Hello, \${name}!\`;
     console.log(message);
     return message;
@@ -26,6 +25,9 @@ function greet(name) {
 
 const result = greet("World");
 console.log(result);
+`;
+
+const sourceCode = `
 `;
 
   return (
@@ -39,9 +41,9 @@ console.log(result);
           <h1 className="font-bold text-[20px] text-center">Vulnerabilidade: Cross-Site Scripting (Stored)</h1>
 
 
-          <div className="mx-auto ">
+          <div className="mx-auto pt-2">
 
-            <input type="text" name="" id="user" className=" border-2 border-gray-400 w-48 text-base focus:outline focus:none " placeholder="Message..."  />
+            <input type="text" name="" id="user" className=" border-2 border-gray-400 w-48 text-base focus:outline focus:none mr-2" placeholder="Message..."  />
             <button
             class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button">Submit</button>
@@ -50,6 +52,11 @@ console.log(result);
             class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"onClick={handleOpenPopup}
             >Example</button>
+
+            <button
+            class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"onClick={handleOpenPopup}
+            >Source Code</button>
 
           </div>
 
@@ -80,7 +87,7 @@ console.log(result);
           
           </div>
 
-          {/* Pop-up de Código */}
+          
           {isPopupOpen && (
             <Draggable>
               <div className="fixed top-20 left-20 z-50 w-[400px] h-[300px] bg-white rounded-lg shadow-lg overflow-hidden">
