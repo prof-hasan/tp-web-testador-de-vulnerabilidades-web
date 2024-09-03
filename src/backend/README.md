@@ -212,3 +212,33 @@
 	}
 ]
 ```
+
+### 8. Obter Informações Bancárias Vulnerável - `/user/bank/vulnerable` (POST)
+
+**Descrição**: Esta rota foi criada para fins educacionais e de teste. Ela permite que você obtenha informações bancárias de um usuário com base nos parâmetros branchNumber (agência) e accountNumber (número da conta) fornecidos na requisição. Atenção: esta rota é vulnerável a **SQL Injection**, o que significa que um usuário malicioso pode manipular a consulta SQL executada pelo servidor para acessar dados não autorizados
+
+**Request:**
+
+```json
+{
+    "branchNumber": "string",
+    "accountNumber": "string"
+}
+```
+
+* **branchNumber**: Número da agência bancária associada à conta do usuário.
+* **accountNumber**: Número da conta bancária do usuário
+
+**Response:**
+
+```json
+[
+    {
+        "branchNumber": "1234",
+        "accountNumber": "12318",
+        "balance": 999.0,
+        "secret": "123456",
+        "digit": 1
+    }
+]
+```
