@@ -4,7 +4,7 @@ import { Header } from '../../Components/index.jsx';
 import { StyledSection } from './StyleAdminPage.js';
 import UserCard from './UserCard.jsx';
 
-function AdminPage() {
+function VulnerableAdminPage() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -38,4 +38,4 @@ function AdminPage() {
     )
 }
 
-export default AdminPage;
+export default VulnerableAdminPage;
