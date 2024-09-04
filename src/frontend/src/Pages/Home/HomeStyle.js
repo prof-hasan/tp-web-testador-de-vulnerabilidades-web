@@ -1,6 +1,6 @@
 import styled,  { keyframes, css  } from 'styled-components'
 import {Link} from 'react-router-dom';
-import img from './img.png'
+import img from './img.png';
 
 
 export const DivBanner = styled.div`
@@ -158,7 +158,7 @@ export const LoginFormContainer = styled.div`
 
 export const StyledMainP = styled.p`
 margin: 20px auto;
-font-weight: 100;
+font-weight: 400;
 line-height: 25px;
 `
 
