@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { userValidationSchema } from './createUserFormValidation';
 import { userLoginValidationSchema } from './userLoginValidations';
 import { useAuth } from "../../Hooks/UseAuth";
+import { useNavigate } from 'react-router-dom';
 
 
 //colocar um gradiente linear
@@ -33,6 +34,7 @@ function Home() {
   const [userLogin, setUserLogin] = useState(false);
   const [userLoginError, setUserLoginError] = useState(false);
   const [customError, setCustomError] = useState("");
+  const navigate = useNavigate();
 
   // validador formulário login
   const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: loginErrors } } = useForm({
@@ -97,6 +99,7 @@ function Home() {
           localStorage.setItem('accessToken', accessToken);
           setUserLogin(true);
           await login(res.data); // Função de login para manipulação adicional
+          navigate('/SqlInjection');
           setShowSuccessBox(true);
         }
       })
@@ -137,6 +140,7 @@ function Home() {
       .then(res => {
         if (res.status === 201) {
           setUserCreated(true);
+
         }
 
       })

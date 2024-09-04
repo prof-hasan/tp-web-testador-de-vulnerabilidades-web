@@ -98,7 +98,7 @@ console.log(result);
 
           {results.length > 0 && (
             <div className="mx-auto overflow-auto rounded-lg shadow m-10">
-              <table className="w-3/4">
+              <table className="w-4/4">
                 <thead className="bg-gray-50 border-b-2 border-gray-200">
                   <tr>
                     <th className="p-3 text-sm font-semibold tracking-wide text-left">Número da Agência</th>
