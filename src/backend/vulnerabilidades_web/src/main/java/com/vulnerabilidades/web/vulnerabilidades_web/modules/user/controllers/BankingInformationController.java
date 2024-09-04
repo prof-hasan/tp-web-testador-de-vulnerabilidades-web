@@ -1,12 +1,14 @@
 package com.vulnerabilidades.web.vulnerabilidades_web.modules.user.controllers;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +24,10 @@ import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.entities.UserE
 import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.repositories.BankingInformationRepository;
 import com.vulnerabilidades.web.vulnerabilidades_web.modules.user.repositories.UserRepository;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true", allowedHeaders = "*", exposedHeaders = "Authorization")
 @RequestMapping("/user/bank")
 public class BankingInformationController {
     @Autowired
@@ -48,6 +50,7 @@ public class BankingInformationController {
 
             BankingInformationResponseDTO bankingInformationResponseDTO = BankingInformationResponseDTO.builder()
                                                                             .branchNumber(bankingInformationEntity.getBranchNumber())
+                                                                            .username(userEntity.getUsername())
                                                                             .accountNumber(bankingInformationEntity.getAccountNumber())
                                                                             .balance(bankingInformationEntity.getBalance())
                                                                             .secret(bankingInformationEntity.getSecret())
@@ -81,6 +84,29 @@ public class BankingInformationController {
                             .build())
                     .collect(Collectors.toList());
 
+            return ResponseEntity.ok().body(bankingInformationDTOs);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/protected")
+    public ResponseEntity<Object> getProtectedBankingInfo(@Valid @RequestBody BankingInformationSearchRequestDTO bankingInformationSearchRequestDTO) {
+        try {
+            var bankingInformationEntities =
+                    bankingInformationRepository.findByBranchNumberAndAccountNumber(bankingInformationSearchRequestDTO.getBranchNumber(), bankingInformationSearchRequestDTO.getAccountNumber())
+                        .orElseThrow(() -> new BankAccountNotFoundException());
+
+            // Convertendo as entidades para DTOs
+            List<BankingInformationResponseDTO> bankingInformationDTOs = new ArrayList<>();
+            var bankingResponse = BankingInformationResponseDTO.builder()
+                                    .accountNumber(bankingInformationEntities.getAccountNumber())
+                                    .balance(bankingInformationEntities.getBalance())
+                                    .branchNumber(bankingInformationEntities.getBranchNumber())
+                                    .digit(bankingInformationEntities.getDigit())
+                                    .secret(bankingInformationEntities.getSecret())
+                                    .build();
+            bankingInformationDTOs.add(bankingResponse);
             return ResponseEntity.ok().body(bankingInformationDTOs);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

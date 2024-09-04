@@ -1,12 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import {Sidenav} from "../../Components"
 import{Header} from "../../Components"
 import{CodeBlock} from "../../Components"
+import DOMPurify from "dompurify";
+
 
 
 function CrossSiteRflected() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [user, setUser] = useState(""); 
+  const [message, setMessage] = useState(""); 
+  const [textoExibido, setTextoExibido] = useState(""); 
+  const [textoExibidoUser, setTextoExibidoUser] = useState("");
+
+  useEffect(() => {
+    document.title = "Cross Site Scripting"
+  })
+
+  const [difficulty, setDifficulty] = useState(''); // Estado para armazenar a dificuldade selecionada
+
+  // Função que atualiza a dificuldade
+  const handleDifficultyChange = (selectedDifficulty) => {
+    setDifficulty(selectedDifficulty);
+  };
+
+  const handleSubmit = () => {
+    if (user || message) { 
+      setTextoExibidoUser(`User: ${user}`);
+      setTextoExibido(`Message: ${message}`);
+    } else {
+      setTextoExibido("")
+      setTextoExibidoUser(""); 
+    }
+  };
+
+  const sanitizedUserText = DOMPurify.sanitize(textoExibidoUser);
+  const sanitizedMessageText = DOMPurify.sanitize(textoExibido);
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -32,7 +62,7 @@ const sourceCode = `
 `;
   return (
     <div className=" flex flex-col  h-screen ">
-      <Header/>
+    <Header onDifficultyChange={handleDifficultyChange} /> {/* Passa a função como prop */}
       
       <div className="flex flex-1">
         <Sidenav />
@@ -45,7 +75,8 @@ const sourceCode = `
           <div className="rounded-md shadow-lg h-66 w-3/4 border-2 border-black bg-gray-300 p-6 m-5 mx-auto" id="user-input">
               <div>
                 <label htmlFor="user" className="block text-bas mb-2 pt-2">User</label>
-                <input type="text" name="" id="user" className="border w-36 text-base focus:outline "  />
+                <input type="text" name="" id="user" className="border w-36 text-base focus:outline "   value={user} 
+                onChange={(e) => setUser(e.target.value)} />
               </div>
 
               <div>
@@ -54,21 +85,34 @@ const sourceCode = `
                   id="message" 
                   className="border w-72 text-base focus:outline h-36 align-text-top p-2"
                   placeholder="Digite sua mensagem aqui..." 
-                />
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)} />
               </div>
+
 
               <div className="flex justify-end ">
                 <button type="button" class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 m-2 text-center align-middle text-sm  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ">Source Code</button>
                 
                 <button
                 class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button" onClick={handleOpenPopup} >Submit</button>
+                type="button" onClick={handleOpenPopup} >Source Code</button>
 
                 <button
                 class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button" >Source code</button>
+                type="button"  onClick={handleSubmit} >Submit</button>
 
               </div>
+
+              {(textoExibido || textoExibidoUser) && (
+                <div className="flex flex-col">
+                {difficulty === 'easy' ? <div dangerouslySetInnerHTML={{ __html: textoExibidoUser }} /> : <div>{sanitizedUserText}</div>}
+
+                {difficulty === 'easy' ? <div dangerouslySetInnerHTML={{ __html: textoExibido }} /> : <div>{sanitizedMessageText}</div>}
+                 
+                </div>
+              )}
+  
+
           </div>
 
           {isPopupOpen && (
