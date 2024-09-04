@@ -1,7 +1,15 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from "../../Hooks/UseAuth";
 
 function Header() {
   const location = useLocation();
+  const { user } = useAuth();
+    const { logout } = useAuth();
+    console.log(user);
+    
+    const handleClick = () => {
+        logout();
+      };
 
     return (
       <nav className="bg-neutral-900 px-4 py-3 h-14 w-full flex justify-between shadow-2xl ">
@@ -11,15 +19,9 @@ function Header() {
         
         <div className="flex justify-between space-x-20 absolute left-1/2 items-center " id="header-options">
 
-            <Link to="/UserLogin">
+            <Link onClick={handleClick}>
             <div className=" text-gray-300 font-light cursor-pointer hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
-            Login
-            </div>
-            </Link>
-
-            <Link to="/createUser">
-            <div className=" text-gray-300 font-light cursor-pointer hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
-            Criar usuario
+            Logout
             </div>
             </Link>
 
