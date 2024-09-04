@@ -23,11 +23,8 @@ function Router() {
         <AuthProvider>
 
             <Routes>
-            <Route element={<PublicRoutes />}>
                 <Route element={<Home />} path="/" exact />
-            </Route>
 
-            <Route element={<SecuredRoutes />}>
 
                 <Route element={<CrossSiteRflected />} path="/CrossSiteReflected" exact />
                 <Route element={<CrossSiteStored />} path="/CrossSiteStored" exact />
@@ -36,7 +33,6 @@ function Router() {
                 <Route element={<VulnerableAdminPage />} path="/Admin/easy" exact />
                 <Route element={<ProtectedAdminPage />} path="/Admin/hard" exact />
                 <Route element={<ViewBankAccount />} path="/ViewBankAccount" exact />
-            </Route>
 
             <Route path="*" element={<Home />} />
 
