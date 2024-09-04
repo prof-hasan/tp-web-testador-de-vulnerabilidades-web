@@ -68,7 +68,7 @@ function Home() {
   useEffect(() => {
     document.title = "Home"
   }, []);
-
+<br />
   const SuccessBox = () => (
     <div style={{
       backgroundColor: '#4BB543',
