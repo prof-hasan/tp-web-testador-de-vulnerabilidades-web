@@ -91,7 +91,7 @@ const sourceCode = `
 
 
               <div className="flex justify-end ">
-                <button type="button" class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 m-2 text-center align-middle text-sm  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ">Source Code</button>
+                <button type="button" class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 m-2 text-center align-middle text-sm  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ">Example</button>
                 
                 <button
                 class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle text-sm m-2  text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
