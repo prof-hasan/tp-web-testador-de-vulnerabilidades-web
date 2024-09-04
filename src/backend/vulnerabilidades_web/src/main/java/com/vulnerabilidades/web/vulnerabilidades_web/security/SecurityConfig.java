@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .requestMatchers("/user/message").authenticated()
                 .requestMatchers("/user/bank").authenticated()
                 .requestMatchers("/user/bank/vulnerable/").authenticated()
+                .requestMatchers("/user/bank/protected/").authenticated()
                 .requestMatchers("/admin/all/hard").hasRole("ADMIN")
                 .requestMatchers("/admin/all/easy").permitAll()
                 .anyRequest().permitAll();

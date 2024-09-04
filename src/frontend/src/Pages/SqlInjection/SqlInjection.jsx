@@ -41,30 +41,24 @@ function SqlInjection() {
 
   // Exemplos de código diferentes baseados na dificuldade
   const exampleEasy = `
-function vulnerableQuery() {
-    const query = "SELECT * FROM users WHERE username = '" + userInput + "'";
-    // Exemplo de injeção SQL vulnerável
-    console.log(query);
-}
+'OR '1' = '1
 `;
 
   const exampleHard = `
-function secureQuery() {
-    const query = "SELECT * FROM users WHERE username = ?";
-    // Usando parâmetros para prevenir injeção SQL
-    console.log(query);
-}
+
 `;
 
   const vulnerableCodeExample = `
-function greet(name) {
-    const message = \`Hello, \${name}!\`;
-    console.log(message);
-    return message;
-}
+@Override
+    public List<BankingInformationEntity> findByAccountNumberAndBranchNumberVulnerable(String accountNumber, String branchNumber) {
+        String queryStr = "SELECT * FROM banking_information WHERE account_number = '" + accountNumber + "' AND branch_number = '" + branchNumber + "'";
+        Query query = this.entityManager.createNativeQuery(queryStr, BankingInformationEntity.class);
+        return query.getResultList();
+    }
+`;
 
-const result = greet("World");
-console.log(result);
+const notVulnerableCodeExample = `
+Optional<BankingInformationEntity> findByBranchNumberAndAccountNumber(String branchNumber, String accountNumber);
 `;
 
   return (
