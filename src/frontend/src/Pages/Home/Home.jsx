@@ -64,7 +64,7 @@ function Home() {
   };
 
   const [showSuccessBox, setShowSuccessBox] = useState(false);
-
+<br />
   const SuccessBox = () => (
     <div style={{
       backgroundColor: '#4BB543',
