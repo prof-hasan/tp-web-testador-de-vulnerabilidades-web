@@ -3,6 +3,7 @@ package com.vulnerabilidades.web.vulnerabilidades_web.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,11 +22,15 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> {
                 auth
-                .requestMatchers("/user/message/").authenticated()
-                .requestMatchers("/user/bank/").authenticated()
-                .anyRequest().permitAll(); 
+                .requestMatchers("/user/message").authenticated()
+                .requestMatchers("/user/bank").authenticated()
+                .requestMatchers("/user/bank/vulnerable/").authenticated()
+                .requestMatchers("/admin/all/hard").hasRole("ADMIN")
+                .requestMatchers("/admin/all/easy").permitAll()
+                .anyRequest().permitAll();
             })
-            .addFilterBefore(jwtCreateMessageRequestFilter, BasicAuthenticationFilter.class);
+            .addFilterBefore(jwtCreateMessageRequestFilter, BasicAuthenticationFilter.class)
+            .cors(Customizer.withDefaults());
         return http.build();
     }
 

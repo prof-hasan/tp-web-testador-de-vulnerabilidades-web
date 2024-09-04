@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankingInformationResponseDTO {
-    private String username;
-    private String branchNumber;
+public class BankingInformationSearchRequestDTO {
     private String accountNumber;
-    private float balance;
-    private String secret;
-    private int digit;
+    private String branchNumber;
 }

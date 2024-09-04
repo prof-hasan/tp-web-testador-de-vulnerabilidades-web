@@ -1,14 +1,16 @@
 import styled,  { keyframes, css  } from 'styled-components'
 import {Link} from 'react-router-dom';
+import img from './img.png';
 
 
 export const DivBanner = styled.div`
-width: 100%;
-height: 100vh;
-background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('');
-background-size: cover;
-background-position: center;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(${img});
+  background-size: cover;
+  background-position: center;
 `;
+
 
 export const VulnerabilitiesNavbar = styled.div`
 margin: auto;
@@ -33,27 +35,13 @@ list-style: none;
 display: inline-block;
 margin: 0 20px;
 position: relative;
-&:after{
-  content: '';
-  height: 3px;
-  width: 0;
-  background:red;
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  transition: 0ms.5s;
-};
-&:hover:after{
-  width: 100%;
-  transition: 0ms.5s;
-}
 `
 const marquee = keyframes`
   0% {
-    transform: translateX(100%); /* Inicia fora da tela à direita */
+    transform: translateX(100%); 
   }
   100% {
-    transform: translateX(-100%); /* Termina fora da tela à esquerda */
+    transform: translateX(-100%); 
   }
 `;
 
@@ -170,7 +158,7 @@ export const LoginFormContainer = styled.div`
 
 export const StyledMainP = styled.p`
 margin: 20px auto;
-font-weight: 100;
+font-weight: 400;
 line-height: 25px;
 `
 

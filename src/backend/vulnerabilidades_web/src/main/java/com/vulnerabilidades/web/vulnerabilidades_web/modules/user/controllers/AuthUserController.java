@@ -19,7 +19,6 @@ public class AuthUserController {
 
     @PostMapping("/auth")
     public ResponseEntity<Object> auth(@RequestBody AuthUserRequestDTO authUserRequestDTO) {
-        System.out.println("Controller");
         try {
             var token = this.authUserUseCase.execute(authUserRequestDTO);
             return ResponseEntity.ok().body(token);

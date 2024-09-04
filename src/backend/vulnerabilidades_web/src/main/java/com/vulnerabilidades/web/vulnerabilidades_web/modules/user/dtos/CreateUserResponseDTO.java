@@ -8,9 +8,9 @@ public class CreateUserResponseDTO {
     private String password;
     private String job;
     private int age;
-    private int agencia;
-    private int numConta;
-    private int digito;
+    private String branchNumber;
+    private String accountNumber;
+    private int digit;
     private String secret;
-    private float saldo;
+    private float balance;
 }
