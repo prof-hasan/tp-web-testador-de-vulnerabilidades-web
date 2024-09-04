@@ -94,9 +94,6 @@ function Home() {
     axios.post('http://localhost:8080/user/auth', formData)
       .then(async res => {
         if (res.status === 200){  
-          const accessToken = res.data.access_token;
-          // Armazenar o token
-          localStorage.setItem('accessToken', accessToken);
           setUserLogin(true);
           await login(res.data); // Função de login para manipulação adicional
           navigate('/SqlInjection');

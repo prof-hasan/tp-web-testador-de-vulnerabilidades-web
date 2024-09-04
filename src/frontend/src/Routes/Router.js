@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import CrossSiteRflected from '../Pages/CrossSiteReflected/CrossSiteRflected'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CrossSiteRflected from '../Pages/CrossSiteReflected/CrossSiteRflected';
 import BrokenAControl from '../Pages/BrokenAControl/BrokenAControl';
 import SqlInjection from '../Pages/SqlInjection/SqlInjection';
 import CreateUserForm from '../Pages/CreateUser/CreateUserForm';
@@ -8,27 +8,31 @@ import VulnerableAdminPage from '../Pages/AdminPages/VulnerableAdminPage';
 import CrossSiteStored from '../Pages/CrossSiteStored/CrossSiteStored';
 import UserLogin from '../Pages/UserLogin/UserLogin';
 import ViewBankAccount from '../Pages/ViewBankAccount/ViewBankAccount';
-import { AuthProvider } from '../Hooks/UseAuth';
-import PublicRoutes from '../Components/ProtectedRoutes/PublicRoutes'
-import SecuredRoutes from '../Components/ProtectedRoutes/SecuredRoutes'
+import { AuthProvider, useAuth } from '../Hooks/UseAuth';
+import PublicRoutes from '../Components/ProtectedRoutes/PublicRoutes';
+import SecuredRoutes from '../Components/ProtectedRoutes/SecuredRoutes';
 import ProtectedAdminPage from '../Pages/AdminPages/ProtectedAdminPage';
-import { useAuth } from '../Hooks/UseAuth';
-
 
 function Router() {
-
-    return(
-
+    return (
         <BrowserRouter>
-        <AuthProvider>
+            <AuthProvider>
+                <AuthAwareRoutes />
+            </AuthProvider>
+        </BrowserRouter>
+    );
+}
 
-            <Routes>
+function AuthAwareRoutes() {
+    const { user } = useAuth();
+
+    return (
+        <Routes>
             <Route element={<PublicRoutes />}>
                 <Route element={<Home />} path="/" exact />
             </Route>
 
             <Route element={<SecuredRoutes />}>
-
                 <Route element={<CrossSiteRflected />} path="/CrossSiteReflected" exact />
                 <Route element={<CrossSiteStored />} path="/CrossSiteStored" exact />
                 <Route element={<BrokenAControl />} path="/BrokenAControl" exact />
@@ -38,16 +42,13 @@ function Router() {
                 <Route element={<ViewBankAccount />} path="/ViewBankAccount" exact />
             </Route>
 
-            <Route path="*" element={<Home />} />
-
-
-
-            </Routes>
-            </AuthProvider>
-
-        </BrowserRouter>
-    )
-
+          
+            <Route
+                path="*"
+                element={user ? <SqlInjection /> : <Home />}
+            />
+        </Routes>
+    );
 }
 
 export default Router;
