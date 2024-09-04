@@ -1,6 +1,7 @@
 package com.vulnerabilidades.web.vulnerabilidades_web.modules.user.controllers;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,29 @@ public class BankingInformationController {
                             .build())
                     .collect(Collectors.toList());
 
+            return ResponseEntity.ok().body(bankingInformationDTOs);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/protected")
+    public ResponseEntity<Object> getProtectedBankingInfo(@Valid @RequestBody BankingInformationSearchRequestDTO bankingInformationSearchRequestDTO) {
+        try {
+            var bankingInformationEntities =
+                    bankingInformationRepository.findByBranchNumberAndAccountNumber(bankingInformationSearchRequestDTO.getBranchNumber(), bankingInformationSearchRequestDTO.getAccountNumber())
+                        .orElseThrow(() -> new BankAccountNotFoundException());
+
+            // Convertendo as entidades para DTOs
+            List<BankingInformationResponseDTO> bankingInformationDTOs = new ArrayList<>();
+            var bankingResponse = BankingInformationResponseDTO.builder()
+                                    .accountNumber(bankingInformationEntities.getAccountNumber())
+                                    .balance(bankingInformationEntities.getBalance())
+                                    .branchNumber(bankingInformationEntities.getBranchNumber())
+                                    .digit(bankingInformationEntities.getDigit())
+                                    .secret(bankingInformationEntities.getSecret())
+                                    .build();
+            bankingInformationDTOs.add(bankingResponse);
             return ResponseEntity.ok().body(bankingInformationDTOs);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

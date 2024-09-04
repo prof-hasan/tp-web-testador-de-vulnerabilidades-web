@@ -3,6 +3,8 @@ import Draggable from "react-draggable";
 import {Sidenav} from "../../Components"
 import{Header} from "../../Components"
 import{CodeBlock} from "../../Components"
+import DOMPurify from "dompurify";
+
 
 
 function CrossSiteRflected() {
@@ -11,6 +13,15 @@ function CrossSiteRflected() {
   const [message, setMessage] = useState(""); 
   const [textoExibido, setTextoExibido] = useState(""); 
   const [textoExibidoUser, setTextoExibidoUser] = useState("");
+
+  
+
+  const [difficulty, setDifficulty] = useState(''); // Estado para armazenar a dificuldade selecionada
+
+  // Função que atualiza a dificuldade
+  const handleDifficultyChange = (selectedDifficulty) => {
+    setDifficulty(selectedDifficulty);
+  };
 
   const handleSubmit = () => {
     if (user || message) { 
@@ -21,6 +32,9 @@ function CrossSiteRflected() {
       setTextoExibidoUser(""); 
     }
   };
+
+  const sanitizedUserText = DOMPurify.sanitize(textoExibidoUser);
+  const sanitizedMessageText = DOMPurify.sanitize(textoExibido);
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -46,7 +60,7 @@ const sourceCode = `
 `;
   return (
     <div className=" flex flex-col  h-screen ">
-      <Header/>
+    <Header onDifficultyChange={handleDifficultyChange} /> {/* Passa a função como prop */}
       
       <div className="flex flex-1">
         <Sidenav />
@@ -89,8 +103,10 @@ const sourceCode = `
 
               {(textoExibido || textoExibidoUser) && (
                 <div className="flex flex-col">
-                <div>{textoExibido}</div> 
-                <div >{textoExibidoUser}</div> 
+                {difficulty === 'easy' ? <div dangerouslySetInnerHTML={{ __html: textoExibidoUser }} /> : <div>{sanitizedUserText}</div>}
+
+                {difficulty === 'easy' ? <div dangerouslySetInnerHTML={{ __html: textoExibido }} /> : <div>{sanitizedMessageText}</div>}
+                 
                 </div>
               )}
   
