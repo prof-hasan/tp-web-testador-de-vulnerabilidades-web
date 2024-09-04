@@ -1,12 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from "../../Hooks/UseAuth";
+import { useState } from 'react';
 
-function Header() {
+function Header({ onDifficultyChange }) { // Recebe a função como prop
   const location = useLocation();
   const { user, logout } = useAuth();
-  
+  const [difficulty, setDifficulty] = useState(''); // Estado para armazenar a dificuldade
+
   const handleClick = () => {
     logout();
+  };
+
+  const handleDifficultyChange = (event) => {
+    const selectedDifficulty = event.target.value;
+    setDifficulty(selectedDifficulty);
+    onDifficultyChange(selectedDifficulty); // Chama a função ao mudar a dificuldade
   };
 
   return (
@@ -26,16 +34,20 @@ function Header() {
           </div>
         </Link>
 
-        <select className="bg-gray-800 text-gray-300 font-light rounded cursor-pointer outline-none px-2 py-1 hover:bg-gray-700 hover:text-white">
-          <option className="bg-gray-800 text-gray-300" value="" disabled selected>Dificuldade</option>
-          <option className="" value="option1">Fácil</option>
-          {location.pathname === '/SqlInjection' && <option className="" value="option2">Médio</option>}
-          <option className="" value="option3">Difícil</option>
+        <select 
+          className="bg-gray-800 text-gray-300 font-light rounded cursor-pointer outline-none px-2 py-1 hover:bg-gray-700 hover:text-white"
+          value={difficulty}
+          onChange={handleDifficultyChange}
+        >
+          <option className="bg-gray-800 text-gray-300" value="" disabled>Dificuldade</option>
+          <option value="easy">Fácil</option>
+          {location.pathname === '/SqlInjection' && <option value="medium">Médio</option>}
+          <option value="hard">Difícil</option>
         </select>
 
         {(location.pathname === '/CrossSiteReflected' || location.pathname === '/CrossSiteStored') && (
           <select className="bg-gray-800 text-gray-300 font-light rounded cursor-pointer outline-none px-2 py-1 hover:bg-gray-700 hover:text-white">
-            <option value="" disabled selected>Tipo</option>
+            <option value="" disabled>Tipo</option>
             <option value="">Reflected</option>
             <option value="">Stored</option>
           </select>

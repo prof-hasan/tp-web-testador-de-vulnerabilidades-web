@@ -63,11 +63,7 @@ function Sidenav() {
                     unmountOnExit
                 >
                 <div className="text-left text-[15px]  mt-2 w-4/5 mx-auto  text-gray-400 " id="submenu-vulnerabilidades">
-                    <Link to="">
-                        <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Criar conta bancária </div>
-                    </Link>
-
-                    <Link to="">
+                    <Link to="/ViewBankAccount">
                         <div className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"> Acessar dados bancários </div>
                     </Link>
 
