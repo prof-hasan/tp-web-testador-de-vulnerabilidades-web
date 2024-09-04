@@ -26,7 +26,7 @@ export const userValidationSchema = Yup.object({
     .length(5, 'O número da conta deve ter exatamente 5 caracteres.')
     .required('O número da conta é obrigatório.'),
   
-  digito: Yup.string()
+  digit: Yup.string()
     .length(1, 'O dígito deve ter exatamente 1 caractere.')
     .required('O dígito é obrigatório.'),
 

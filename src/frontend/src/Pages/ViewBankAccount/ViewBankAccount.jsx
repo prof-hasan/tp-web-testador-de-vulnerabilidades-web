@@ -16,6 +16,7 @@ function ViewBankAccount() {
   // Função para buscar os dados da conta bancária
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
+    document.title = "Dados Bancários"
     if (!token) {
       console.error("Token de autenticação não encontrado. Redirecionando para login.");
       // Redirecionar para página de login ou mostrar uma mensagem apropriada

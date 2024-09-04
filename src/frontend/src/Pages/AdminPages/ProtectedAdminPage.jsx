@@ -9,6 +9,7 @@ function ProtectedAdminPage() {
 
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
+        document.title = "Protected Admin";
         const headers = {
             'Authorization': `Bearer ${token}`
         };

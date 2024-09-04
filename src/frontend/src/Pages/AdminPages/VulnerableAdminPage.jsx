@@ -16,6 +16,8 @@ function VulnerableAdminPage() {
             access_token: token
         };
 
+        document.title = "Admin Vulnerável";
+
         axios.get('http://localhost:8080/admin/all/easy', requestBody) //url da rota back
             .then(({ data }) => {
                 console.log(data);

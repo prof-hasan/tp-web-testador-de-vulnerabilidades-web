@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import {Sidenav} from "../../Components"
 import{Header} from "../../Components"
@@ -14,7 +14,9 @@ function CrossSiteRflected() {
   const [textoExibido, setTextoExibido] = useState(""); 
   const [textoExibidoUser, setTextoExibidoUser] = useState("");
 
-  
+  useEffect(() => {
+    document.title = "Cross Site Scripting"
+  })
 
   const [difficulty, setDifficulty] = useState(''); // Estado para armazenar a dificuldade selecionada
 

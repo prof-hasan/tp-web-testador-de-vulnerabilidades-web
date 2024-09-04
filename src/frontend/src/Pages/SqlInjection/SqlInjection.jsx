@@ -1,5 +1,5 @@
 import { Sidenav, Header, CodeBlock } from "../../Components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import Draggable from "react-draggable";
 
@@ -9,6 +9,10 @@ function SqlInjection() {
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState({ branchNumber: '', accountNumber: '' });
   const [difficulty, setDifficulty] = useState(''); // Estado para armazenar a dificuldade
+
+  useEffect(() => {
+    document.title = "SQL Injection"
+  });
 
   const handleOpenPopup = (content) => {
     setPopupContent(content);

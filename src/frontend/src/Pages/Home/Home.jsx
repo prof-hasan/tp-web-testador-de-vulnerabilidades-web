@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DivBanner, VulnerabilitiesNavbar, StyledLogo, StyledLinks, StyledListItens, StyledDivMain
   , StyledMainTittle, StyledMainP, ButtonContainer, StyledListContainer, AnimatedDivMain, LoginFormContainer
@@ -64,6 +64,10 @@ function Home() {
   };
 
   const [showSuccessBox, setShowSuccessBox] = useState(false);
+
+  useEffect(() => {
+    document.title = "Home"
+  }, []);
 
   const SuccessBox = () => (
     <div style={{
@@ -137,7 +141,7 @@ function Home() {
       .then(res => {
         if (res.status === 201) {
           setUserCreated(true);
-
+          navigate("/SqlInjection");
         }
 
       })
@@ -182,7 +186,7 @@ function Home() {
           <StyledMainTittle>Web Vulnerability Tester</StyledMainTittle>
           <StyledMainP>Bem vindo(a) ao testador de vulnerabilidades Web! 
 
-Essa ferramente visa demonstrar para desenvolvedores de aplicações Web vulnerabilidades comuns em sistemas Web.
+Essa ferramenta visa demonstrar para desenvolvedores de aplicações Web vulnerabilidades comuns em sistemas Web.
 
 Nosso ambiente simulado permite que você experimente os ataques mais comuns na perspectiva de um atacante, em um ambiente controlado. 
 Aqui, você aprenderá a identificar, entender e corrigir as falhas de segurança mais recorrentes</StyledMainP>
@@ -215,7 +219,7 @@ Aqui, você aprenderá a identificar, entender e corrigir as falhas de seguranç
                   onChange={handleCreateUserInputChange} {...registerCreateUser('password')} />
                 <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
 
-                <div>{createUserErrors.paswword?.message}</div>
+                <div>{createUserErrors.password?.message}</div>
 
               </div>
               <div class="relative z-0 w-full mb-5 group">
@@ -271,7 +275,7 @@ Aqui, você aprenderá a identificar, entender e corrigir as falhas de seguranç
               </div>
               <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
-                  <input type="number" name="balance" id="balance" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" digito" required onChange={handleCreateUserInputChange} {...registerCreateUser('balance')} />
+                  <input type="number" name="balance" id="balance" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-yellow-500 focus:outline-none focus:ring-0 focus:border-yellow-500 peer" placeholder=" Balance" required onChange={handleCreateUserInputChange} {...registerCreateUser('balance')} />
                   <label for="balance" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-yellow-500 peer-focus:dark:text-yellow-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"></label>
 
                   <div>{createUserErrors.balance?.message}</div>

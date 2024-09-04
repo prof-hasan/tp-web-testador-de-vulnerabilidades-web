@@ -1,9 +1,13 @@
 import { Sidenav } from "../../Components";
 import { Header } from "../../Components";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function BrokenAControl() {
   const [difficulty, setDifficulty] = useState(''); // Estado para armazenar a dificuldade selecionada
+
+  useEffect(() => {
+    document.title = "Broken Access Control"
+  });
 
   // Função que atualiza a dificuldade
   const handleDifficultyChange = (selectedDifficulty) => {
